@@ -1,0 +1,12 @@
+button {
+    letter-spacing: 2px;
+}
+
+.app {
+    background-color: #fff;
+}
+
+.tweets-container {
+    flex: 1;
+    overflow: auto;
+}
