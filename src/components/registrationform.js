@@ -20,16 +20,12 @@ class RegistrationForm extends Component {
         };
     }
 
-    handleUserName = (e) => {
-        this.setState({ username: e.target.value });
-    }
+    handleInputChange = (e) => {
+        const target = e.target;
 
-    handleFirstName = (e) => {
-        this.setState({ firstname: e.target.value });
-    }
-
-    handlePassword = (e) => {
-        this.setState({ password: e.target.value });
+        this.setState({
+            [target.name]: target.value
+        });
     }
 
     handleSubmit = () => {
@@ -62,18 +58,21 @@ class RegistrationForm extends Component {
         return (
             <CustomForm message={ this.props.message }>
                 <FormInput
+                    name='username'
                     placeholder='User name'
-                    onChange={ this.handleUserName }
+                    onChange={ this.handleInputChange }
                     error={ this.state.error.username }
                 />
                 <FormInput
+                    name='firstname'
                     placeholder='First name'
-                    onChange={ this.handleFirstName }
+                    onChange={ this.handleInputChange }
                     error={ this.state.error.firstname }
                 />
                 <FormInput
+                    name='password'
                     placeholder='Password'
-                    onChange={ this.handlePassword }
+                    onChange={ this.handleInputChange }
                     error={ this.state.error.password }
                 />
                 <Button

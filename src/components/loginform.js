@@ -18,12 +18,12 @@ class LoginForm extends Component {
         };
     }
 
-    handleUserName = (e) => {
-        this.setState({ username: e.target.value });
-    }
+    handleInputChange = (e) => {
+        const target = e.target;
 
-    handlePassword = (e) => {
-        this.setState({ password: e.target.value });
+        this.setState({
+            [target.name]: target.value
+        });
     }
 
     handleSubmit = () => {
@@ -62,13 +62,15 @@ class LoginForm extends Component {
         return (
             <CustomForm message={ this.props.message }>
                 <FormInput
+                    name='username'
                     placeholder='User name'
-                    onChange={ this.handleUserName }
+                    onChange={ this.handleInputChange }
                     error={ this.state.error.username }
                 />
                 <FormInput
+                    name='password'
                     placeholder='Password'
-                    onChange={ this.handlePassword }
+                    onChange={ this.handleInputChange }
                     error={ this.state.error.password }
                 />
                 <Button
