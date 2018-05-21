@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     Collapse,
     DropdownItem,
@@ -54,5 +55,10 @@ class TimelineNavBar extends Component {
         );
     }
 }
+
+TimelineNavBar.propTypes = {
+    username: PropTypes.string,
+    onLogout: PropTypes.func.isRequired,
+};
 
 export default TimelineNavBar;

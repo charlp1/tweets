@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import CustomForm from './form';
 import FormInput from './forminput';
@@ -80,5 +81,10 @@ class LoginForm extends Component {
         );
     }
 }
+
+LoginForm.propTypes = {
+    message: PropTypes.string,
+    onSubmit: PropTypes.func.isRequired,
+};
 
 export default LoginForm;

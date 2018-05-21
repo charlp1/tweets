@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Jumbotron,
     Form,
@@ -14,5 +15,10 @@ const CustomForm = (props) => (
         </Form>
     </Jumbotron>
 );
+
+CustomForm.propTypes = {
+    message: PropTypes.string,
+    children: PropTypes.node,
+};
 
 export default CustomForm;

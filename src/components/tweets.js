@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
     ListGroup,
 } from 'reactstrap';
@@ -46,5 +47,22 @@ class Tweets extends Component {
         );
     }
 }
+
+Tweets.propTypes = {
+    username: PropTypes.string.isRequired,
+    tweets: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number,
+            text: PropTypes.string,
+            user: PropTypes.string,
+            firstname: PropTypes.string,
+            created: PropTypes.number,
+            timestamp: PropTypes.string,
+        })
+    ),
+    onClickTweet: PropTypes.func.isRequired,
+    onEditTweet: PropTypes.func.isRequired,
+    onDeleteTweet: PropTypes.func.isRequired,
+};
 
 export default Tweets;

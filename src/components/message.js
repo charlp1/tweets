@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Alert } from 'reactstrap';
 
 const Message = (props) => (
@@ -9,5 +10,10 @@ const Message = (props) => (
         { props.text }
     </Alert>
 );
+
+Message.propTypes = {
+    type: PropTypes.string,
+    text: PropTypes.string,
+};
 
 export default Message;

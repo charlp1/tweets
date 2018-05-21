@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Button,
     Modal,
@@ -32,5 +33,16 @@ const ModalDialog = (props) => (
         </ModalFooter>
     </Modal>
 );
+
+ModalDialog.propTypes = {
+    header: PropTypes.string,
+    body: PropTypes.string,
+    button: PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        action: PropTypes.func.isRequired,
+    }),
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+};
 
 export default ModalDialog;

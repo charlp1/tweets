@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Card,
     CardBody,
@@ -26,5 +27,17 @@ const Tweet = (props) => (
         </CardBody>
     </Card>
 );
+
+Tweet.propTypes = {
+    onClickTweet: PropTypes.func.isRequired,
+    data: PropTypes.shape({
+        id: PropTypes.number,
+        text: PropTypes.string,
+        user: PropTypes.string,
+        firstname: PropTypes.string,
+        created: PropTypes.number,
+        timestamp: PropTypes.string,
+    }),
+};
 
 export default Tweet;

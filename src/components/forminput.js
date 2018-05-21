@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     FormGroup,
     FormFeedback,
@@ -17,5 +18,11 @@ const FormInput = (props) => (
         </FormFeedback>
     </FormGroup>
 );
+
+FormInput.propTypes = {
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    error: PropTypes.string,
+};
 
 export default FormInput;

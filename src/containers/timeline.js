@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -141,6 +142,35 @@ class TimelineScreen extends Component {
         );
     }
 }
+
+TimelineScreen.propTypes = {
+    users: PropTypes.objectOf(
+        PropTypes.shape({
+            username: PropTypes.string,
+            firstname: PropTypes.string,
+            password: PropTypes.string,
+        })
+    ),
+    tweets: PropTypes.shape({
+        counter: PropTypes.number,
+        data: PropTypes.shape({
+            id: PropTypes.number,
+            text: PropTypes.string,
+            user: PropTypes.string,
+            created: PropTypes.number,
+        })
+    }),
+    logoutUser: PropTypes.func.isRequired,
+    addTweet: PropTypes.func.isRequired,
+    editTweet: PropTypes.func.isRequired,
+    deleteTweet: PropTypes.func.isRequired,
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            username: PropTypes.string,
+        })
+    }),
+    history: PropTypes.object,
+};
 
 const mapStateToProps = (state) => (
     {

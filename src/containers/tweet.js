@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
     Button,
@@ -38,6 +39,31 @@ class TweetScreen extends Component {
             </Row>
         );
     }
+};
+
+TweetScreen.propTypes = {
+    users: PropTypes.objectOf(
+        PropTypes.shape({
+            username: PropTypes.string,
+            firstname: PropTypes.string,
+            password: PropTypes.string,
+        })
+    ),
+    tweets: PropTypes.shape({
+        counter: PropTypes.number,
+        data: PropTypes.shape({
+            id: PropTypes.number,
+            text: PropTypes.string,
+            user: PropTypes.string,
+            created: PropTypes.number,
+        })
+    }),
+    match: PropTypes.shape({
+        params: PropTypes.shape({
+            id: PropTypes.string,
+        })
+    }),
+    history: PropTypes.object,
 };
 
 const mapStateToProps = (state) => (

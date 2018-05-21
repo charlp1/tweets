@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Navbar,
     NavbarBrand,
@@ -19,5 +20,10 @@ const NavBar = (props) => (
         { props.children }
     </Navbar>
 );
+
+NavBar.propTypes = {
+    brand: PropTypes.string,
+    children: PropTypes.node,
+};
 
 export default NavBar;

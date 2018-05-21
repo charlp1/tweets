@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Row,
     Button,
@@ -25,5 +26,9 @@ const InvalidScreen = (props) => (
         </Row>
     </Row>
 );
+
+InvalidScreen.propTypes = {
+    history: PropTypes.object,
+};
 
 export default InvalidScreen;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
@@ -135,6 +136,20 @@ class HomeScreen extends Component {
         );
     }
 }
+
+HomeScreen.propTypes = {
+    users: PropTypes.objectOf(
+        PropTypes.shape({
+            username: PropTypes.string,
+            firstname: PropTypes.string,
+            password: PropTypes.string,
+        })
+    ),
+    user: PropTypes.string,
+    addUser: PropTypes.func.isRequired,
+    loginUser: PropTypes.func.isRequired,
+    history: PropTypes.object,
+};
 
 const mapStateToProps = (state) => (
     {
