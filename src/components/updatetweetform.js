@@ -7,9 +7,8 @@ import {
     CardBody,
     CardTitle,
     CardSubtitle,
-    FormFeedback,
-    Input,
 } from 'reactstrap';
+import FormInput from './forminput';
 
 class UpdateTweetForm extends Component {
     constructor(props) {
@@ -71,15 +70,12 @@ class UpdateTweetForm extends Component {
                             { tweetData.timestamp }
                         </small>
                     </CardSubtitle>
-                    <Input type='textarea'
+                    <FormInput
+                        type='textarea'
                         value={ this.state.text }
-                        placeholder='type here ...'
                         onChange={ this.handleInput }
-                        invalid={ this.state.message ? true : false }
+                        error={ this.state.message }
                     />
-                    <FormFeedback>
-                        { this.state.message }
-                    </FormFeedback>
                     <ButtonGroup
                         className='w-100 justify-content-end'
                     >

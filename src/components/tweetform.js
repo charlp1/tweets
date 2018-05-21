@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
     Button,
-    Input,
     InputGroup,
     InputGroupAddon,
     FormGroup,
-    FormFeedback,
 } from 'reactstrap';
+import FormInput from './forminput';
 
 class TweetForm extends Component {
     constructor(props) {
@@ -43,24 +42,26 @@ class TweetForm extends Component {
 
     render() {
         return (
-            <FormGroup className='m-1'>
-                <InputGroup>
-                    <Input type='textarea'
+            <FormGroup className='p-2 mb-0 bg-primary'>
+                <InputGroup className='flex-row flex-nowrap'>
+                    <FormInput
+                        className='mb-0'
+                        type='textarea'
                         value={ this.state.text }
-                        placeholder='type here ...'
                         onChange={ this.handleInput }
-                        invalid={ this.state.message ? true : false }
+                        error={ this.state.message }
+                        errorClassName='pl-2 text-white'
                     />
-                    <InputGroupAddon addonType='append'>
+                    <InputGroupAddon
+                        addonType='append'
+                        className='pl-2'
+                    >
                         <Button
                             color='primary'
                             onClick={ this.handleSubmit }>
                             Tweet
                         </Button>
                     </InputGroupAddon>
-                    <FormFeedback>
-                        { this.state.message }
-                    </FormFeedback>
                 </InputGroup>
             </FormGroup>
         );
