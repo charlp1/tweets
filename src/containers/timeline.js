@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { logoutUser } from './../actions/user';
 import {
@@ -112,6 +113,12 @@ class TimelineScreen extends Component {
     render() {
         let match = this.props.match;
 
+        if (match.params.username !== this.props.user) {
+            return (
+                <Redirect to='/' />
+            );
+        }
+
         return (
             <Row className='flex-column h-100 m-0 bg-dark'>
                 <TimelineNavBar
@@ -151,6 +158,7 @@ TimelineScreen.propTypes = {
             password: PropTypes.string,
         })
     ),
+    user: PropTypes.string,
     tweets: PropTypes.shape({
         counter: PropTypes.number,
         data: PropTypes.shape({
@@ -174,8 +182,9 @@ TimelineScreen.propTypes = {
 
 const mapStateToProps = (state) => (
     {
+        users: state.users,
+        user: state.user,
         tweets: state.tweets,
-        users: state.users
     }
 );
 

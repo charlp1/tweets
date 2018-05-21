@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
     Button,
     Row,
@@ -15,10 +16,16 @@ class TweetScreen extends Component {
 
     render() {
         const match = this.props.match;
-        const usersData = this.props.users;
         const tweetsData = this.props.tweets.data;
         let tweetData = tweetsData[match.params.id];
 
+        if (!tweetData) {
+            return (
+                <Redirect to='/' />
+            );
+        }
+
+        const usersData = this.props.users;
         tweetData.createdDate = new Date(tweetData.created);
         tweetData.firstName = usersData[tweetData.user].firstname;
         tweetData.timestamp = tweetData.createdDate.toDateString() +
