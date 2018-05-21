@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
     ListGroup,
@@ -7,46 +7,44 @@ import {
 import Tweet from './tweet';
 import UpdateTweetForm from './updatetweetform';
 
-class Tweets extends Component {
-    render() {
-        let tweets = this.props.tweets;
-        let username = this.props.username;
+const Tweets = (props) => {
+    let tweets = props.tweets;
+    let username = props.username;
 
-        return (
-            <div className='flex-column p-3 tweets-container'>
-                <ListGroup>
-                    {
-                        tweets.map(
-                            tweet => (
-                                tweet.user === username ? (
-                                    <UpdateTweetForm
-                                        key={ tweet.id }
-                                        data={ tweet }
-                                        onClickTweet={
-                                            () => this.props.onClickTweet(tweet)
-                                        }
-                                        onEditTweet={ this.props.onEditTweet }
-                                        onDeleteTweet={
-                                            () => this.props.onDeleteTweet(tweet)
-                                        }
-                                    />
-                                ) : (
-                                    <Tweet
-                                        key={ tweet.id }
-                                        data={ tweet }
-                                        onClickTweet={
-                                            () => this.props.onClickTweet(tweet)
-                                        }
-                                    />
-                                )
+    return (
+        <div className='flex-column p-3 tweets-container'>
+            <ListGroup>
+                {
+                    tweets.map(
+                        tweet => (
+                            tweet.user === username ? (
+                                <UpdateTweetForm
+                                    key={ tweet.id }
+                                    data={ tweet }
+                                    onClickTweet={
+                                        () => props.onClickTweet(tweet)
+                                    }
+                                    onEditTweet={ props.onEditTweet }
+                                    onDeleteTweet={
+                                        () => props.onDeleteTweet(tweet)
+                                    }
+                                />
+                            ) : (
+                                <Tweet
+                                    key={ tweet.id }
+                                    data={ tweet }
+                                    onClickTweet={
+                                        () => props.onClickTweet(tweet)
+                                    }
+                                />
                             )
                         )
-                    }
-                </ListGroup>
-            </div>
-        );
-    }
-}
+                    )
+                }
+            </ListGroup>
+        </div>
+    );
+};
 
 Tweets.propTypes = {
     username: PropTypes.string.isRequired,
