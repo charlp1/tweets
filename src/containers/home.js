@@ -40,7 +40,7 @@ class HomeScreen extends Component {
         }
     }
 
-    handleLogin(user) {
+    handleLogin = (user) => {
         let users = this.props.users;
         let username = user.username;
 
@@ -57,7 +57,7 @@ class HomeScreen extends Component {
         }
     }
 
-    handleRegistration(user) {
+    handleRegistration = (user) => {
         let users = this.props.users;
 
         if (users[user.username]) {
@@ -118,7 +118,7 @@ class HomeScreen extends Component {
                     <TabPane tabId='1'>
                         <Row>
                             <LoginForm
-                                onSubmit={ this.handleLogin.bind(this) }
+                                onSubmit={ this.handleLogin }
                                 message={ this.state.loginError }
                             />
                         </Row>
@@ -126,7 +126,7 @@ class HomeScreen extends Component {
                     <TabPane tabId='2'>
                         <Row>
                             <RegistrationForm
-                                onSubmit={ this.handleRegistration.bind(this) }
+                                onSubmit={ this.handleRegistration }
                                 message={ this.state.registrationError }
                             />
                         </Row>

@@ -19,11 +19,11 @@ class TweetForm extends Component {
         };
     }
 
-    handleInput(e) {
+    handleInput = (e) => {
         this.setState({ text: e.target.value });
     }
 
-    handleSubmit() {
+    handleSubmit = () => {
         if (this.state.text) {
             let tweet = { text: this.state.text };
 
@@ -48,13 +48,13 @@ class TweetForm extends Component {
                     <Input type='textarea'
                         value={ this.state.text }
                         placeholder='type here ...'
-                        onChange={ this.handleInput.bind(this) }
+                        onChange={ this.handleInput }
                         invalid={ this.state.message ? true : false }
                     />
                     <InputGroupAddon addonType='append'>
                         <Button
                             color='primary'
-                            onClick={ this.handleSubmit.bind(this) }>
+                            onClick={ this.handleSubmit }>
                             Tweet
                         </Button>
                     </InputGroupAddon>

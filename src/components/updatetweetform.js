@@ -27,11 +27,11 @@ class UpdateTweetForm extends Component {
         });
     }
 
-    handleInput(e) {
+    handleInput = (e) => {
         this.setState({ text: e.target.value });
     }
 
-    handleEdit() {
+    handleEdit = () => {
         if (this.state.text) {
             let tweet = {
                 ...this.props.data,
@@ -74,7 +74,7 @@ class UpdateTweetForm extends Component {
                     <Input type='textarea'
                         value={ this.state.text }
                         placeholder='type here ...'
-                        onChange={ this.handleInput.bind(this) }
+                        onChange={ this.handleInput }
                         invalid={ this.state.message ? true : false }
                     />
                     <FormFeedback>
@@ -91,7 +91,7 @@ class UpdateTweetForm extends Component {
                         </Button>
                         <Button
                             color='primary'
-                            onClick={ this.handleEdit.bind(this) }
+                            onClick={ this.handleEdit }
                         >
                             Update
                         </Button>

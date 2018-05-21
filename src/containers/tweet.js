@@ -10,7 +10,7 @@ import NavBar from './../components/navbar';
 import TweetDetails from './../components/tweetdetails';
 
 class TweetScreen extends Component {
-    handleClickBack() {
+    handleClickBack = () => {
         this.props.history.goBack();
     }
 
@@ -38,7 +38,7 @@ class TweetScreen extends Component {
                     <TweetDetails data={ tweetData } />
                     <Button
                         color='primary'
-                        onClick={ this.handleClickBack.bind(this) }
+                        onClick={ this.handleClickBack }
                     >
                         Back
                     </Button>

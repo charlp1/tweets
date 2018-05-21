@@ -70,12 +70,12 @@ class TimelineScreen extends Component {
         this.setState({ tweets });
     }
 
-    handleLogout() {
+    handleLogout = () => {
         this.props.logoutUser();
         this.props.history.push('/');
     }
 
-    handleAddTweet(tweet) {
+    handleAddTweet = (tweet) => {
         this.props.addTweet({
             user: this.props.match.params.username,
             text: tweet.text,
@@ -83,27 +83,27 @@ class TimelineScreen extends Component {
         });
     }
 
-    handleEditTweet(tweet) {
+    handleEditTweet = (tweet) => {
         this.props.editTweet(tweet);
     }
 
-    handleDeleteTweet() {
+    handleDeleteTweet = () => {
         this.props.deleteTweet(this.state.selectedTweet);
         this.hideDeleteDialog();
     }
 
-    handleClickTweet(tweet) {
+    handleClickTweet = (tweet) => {
         this.props.history.push(`/tweet/${tweet.id}`);
     }
 
-    showDeleteDialog(tweet) {
+    showDeleteDialog = (tweet) => {
         this.setState({
             selectedTweet: tweet,
             modal: true
         });
     }
 
-    hideDeleteDialog() {
+    hideDeleteDialog = () => {
         this.setState({
             selectedTweet: {},
             modal: false
@@ -123,27 +123,27 @@ class TimelineScreen extends Component {
             <Row className='flex-column h-100 m-0 bg-dark'>
                 <TimelineNavBar
                     username={ match.params.username }
-                    onLogout={ this.handleLogout.bind(this) }
+                    onLogout={ this.handleLogout }
                 />
                 <Tweets
                     username={ match.params.username }
                     tweets={ this.state.tweets }
-                    onClickTweet={ this.handleClickTweet.bind(this) }
-                    onEditTweet={ this.handleEditTweet.bind(this) }
-                    onDeleteTweet={ this.showDeleteDialog.bind(this) }
+                    onClickTweet={ this.handleClickTweet }
+                    onEditTweet={ this.handleEditTweet }
+                    onDeleteTweet={ this.showDeleteDialog }
                 />
                 <TweetForm
-                    onSubmit={ this.handleAddTweet.bind(this) }
+                    onSubmit={ this.handleAddTweet }
                 />
                 <ModalDialog
                     header='Delete Tweet'
                     body='Are you sure you want to delete the tweet?'
                     button={{
                         label: 'Delete',
-                        action: this.handleDeleteTweet.bind(this)
+                        action: this.handleDeleteTweet
                     }}
                     isOpen={ this.state.modal }
-                    onClose={ this.hideDeleteDialog.bind(this) }
+                    onClose={ this.hideDeleteDialog }
                 />
             </Row>
         );
