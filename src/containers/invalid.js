@@ -28,7 +28,9 @@ const InvalidScreen = (props) => (
 );
 
 InvalidScreen.propTypes = {
-    history: PropTypes.object,
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+    }),
 };
 
 export default InvalidScreen;

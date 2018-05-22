@@ -70,7 +70,9 @@ TweetScreen.propTypes = {
             id: PropTypes.string,
         })
     }),
-    history: PropTypes.object,
+    history: PropTypes.shape({
+        goBack: PropTypes.func.isRequired,
+    }),
 };
 
 const mapStateToProps = (state) => (
