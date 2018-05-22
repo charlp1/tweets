@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Button,
     Modal,
     ModalHeader,
     ModalBody,
@@ -21,26 +20,15 @@ const ModalDialog = (props) => (
             { props.body }
         </ModalBody>
         <ModalFooter>
-            <Button color="danger"
-                onClick={ props.button.action }>
-                { props.button.label }
-            </Button>
-            { ' ' }
-            <Button color="secondary"
-                onClick={ props.onClose }>
-                Cancel
-            </Button>
+            { props.footer }
         </ModalFooter>
     </Modal>
 );
 
 ModalDialog.propTypes = {
     header: PropTypes.string,
-    body: PropTypes.string,
-    button: PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        action: PropTypes.func.isRequired,
-    }),
+    body: PropTypes.node,
+    footer: PropTypes.node,
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
 };
