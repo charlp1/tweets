@@ -197,6 +197,7 @@ const mapDispatchToProps = (dispatch) => (
     )
 );
 
+export { TimelineScreen };
 export default connect(
     mapStateToProps, 
     mapDispatchToProps

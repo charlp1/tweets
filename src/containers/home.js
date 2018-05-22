@@ -120,6 +120,7 @@ const mapDispatchToProps = (dispatch) => (
     )
 );
 
+export { HomeScreen };
 export default connect(
     mapStateToProps,
     mapDispatchToProps

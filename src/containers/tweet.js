@@ -95,4 +95,5 @@ const mapStateToProps = (state) => (
     }
 );
 
+export { TweetScreen };
 export default connect(mapStateToProps)(TweetScreen);
