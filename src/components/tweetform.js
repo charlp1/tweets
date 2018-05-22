@@ -24,7 +24,7 @@ class TweetForm extends Component {
 
     handleSubmit = () => {
         if (this.state.text) {
-            let tweet = { text: this.state.text };
+            const tweet = { text: this.state.text };
 
             this.setState(
                 {

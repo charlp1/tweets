@@ -32,7 +32,7 @@ class UpdateTweetForm extends Component {
 
     handleEdit = () => {
         if (this.state.text) {
-            let tweet = {
+            const tweet = {
                 ...this.props.data,
                 text: this.state.text,
                 created: (new Date()).getTime()
@@ -55,7 +55,7 @@ class UpdateTweetForm extends Component {
     }
 
     render() {
-        let tweetData = this.props.data;
+        const tweetData = this.props.data;
 
         return (
             <Card
