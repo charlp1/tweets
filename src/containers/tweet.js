@@ -14,10 +14,27 @@ class TweetScreen extends Component {
         this.props.history.goBack();
     }
 
+    getTweetData(props) {
+        const match = props.match;
+        const tweetsData = props.tweets.data;
+
+        return tweetsData[match.params.id];
+    }
+
+    formatTweetData(data, props) {
+        const usersData = props.users;
+        let tweetData = { ...data };
+
+        tweetData.createdDate = new Date(tweetData.created);
+        tweetData.firstName = usersData[tweetData.user].firstname;
+        tweetData.timestamp = tweetData.createdDate.toDateString() +
+            ' - ' + tweetData.createdDate.toLocaleTimeString();
+
+        return tweetData;
+    }
+
     render() {
-        const match = this.props.match;
-        const tweetsData = this.props.tweets.data;
-        let tweetData = tweetsData[match.params.id];
+        let tweetData = this.getTweetData(this.props);
 
         if (!tweetData) {
             return (
@@ -25,11 +42,7 @@ class TweetScreen extends Component {
             );
         }
 
-        const usersData = this.props.users;
-        tweetData.createdDate = new Date(tweetData.created);
-        tweetData.firstName = usersData[tweetData.user].firstname;
-        tweetData.timestamp = tweetData.createdDate.toDateString() +
-            ' - ' + tweetData.createdDate.toLocaleTimeString();
+        tweetData = this.formatTweetData(tweetData, this.props);
 
         return (
             <Row className='w-100 h-100 m-0 flex-column bg-light'>
