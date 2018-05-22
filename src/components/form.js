@@ -8,7 +8,7 @@ import {
 import Message from './message';
 
 const CustomForm = (props) => (
-    <Jumbotron className='bg-light'>
+    <Jumbotron className='bg-light p-4'>
         <Form className='text-center'>
             <Message text={ props.message } />
             { props.children }
