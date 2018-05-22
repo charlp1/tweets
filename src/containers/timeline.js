@@ -17,7 +17,7 @@ import {
 import TimelineNavBar from './../components/timelinenavbar';
 import TweetForm from './../components/tweetform';
 import Tweets from './../components/tweets';
-import ModalDialog from './../components/modal';
+import DeleteModalDialog from './../components/deletemodal';
 
 class TimelineScreen extends Component {
     constructor(props) {
@@ -111,7 +111,7 @@ class TimelineScreen extends Component {
     }
 
     render() {
-        let match = this.props.match;
+        const match = this.props.match;
 
         if (match.params.username !== this.props.user) {
             return (
@@ -135,15 +135,10 @@ class TimelineScreen extends Component {
                 <TweetForm
                     onSubmit={ this.handleAddTweet }
                 />
-                <ModalDialog
-                    header='Delete Tweet'
-                    body='Are you sure you want to delete the tweet?'
-                    button={{
-                        label: 'Delete',
-                        action: this.handleDeleteTweet
-                    }}
+                <DeleteModalDialog
                     isOpen={ this.state.modal }
                     onClose={ this.hideDeleteDialog }
+                    onDelete={ this.handleDeleteTweet }
                 />
             </Row>
         );
@@ -177,7 +172,9 @@ TimelineScreen.propTypes = {
             username: PropTypes.string,
         })
     }),
-    history: PropTypes.object,
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+    }),
 };
 
 const mapStateToProps = (state) => (
