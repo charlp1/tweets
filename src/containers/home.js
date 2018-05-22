@@ -2,20 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
 
 import { addUser } from './../actions/users';
 import { loginUser } from './../actions/user';
 
 import {
-    Nav,
-    NavItem,
-    NavLink,
-    TabContent,
-    TabPane,
     Row,
 } from 'reactstrap';
 import NavBar from './../components/navbar';
+import Tabs from './../components/tabs';
 import LoginForm from './../components/loginform';
 import RegistrationForm from './../components/registrationform';
 
@@ -23,26 +18,15 @@ class HomeScreen extends Component {
     constructor(props) {
         super(props);
 
-        this.toggle = this.toggle.bind(this);
-
         this.state = {
-            activeTab: '1',
             loginError: '',
             registrationError: ''
         };
     }
 
-    toggle(tab) {
-        if (this.state.activeTab !== tab) {
-            this.setState({
-                activeTab: tab
-            });
-        }
-    }
-
     handleLogin = (user) => {
-        let users = this.props.users;
-        let username = user.username;
+        const users = this.props.users;
+        const username = user.username;
 
         if (
             users[username] &&
@@ -58,7 +42,7 @@ class HomeScreen extends Component {
     }
 
     handleRegistration = (user) => {
-        let users = this.props.users;
+        const users = this.props.users;
 
         if (users[user.username]) {
             this.setState({
@@ -78,60 +62,28 @@ class HomeScreen extends Component {
                 align-items-center justify-content-start m-0'
             >
                 <NavBar brand='HOME' />
-                <Nav
-                    tabs
-                    className='mt-auto'
-                >
-                    <NavItem>
-                        <NavLink
-                            className={
-                                classnames({
-                                    active: this.state.activeTab === '1'
-                                })
-                            }
-                            onClick={
-                                () => { this.toggle('1'); }
-                            }
-                        >
-                            LOGIN
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink
-                            className={
-                                classnames({
-                                    active: this.state.activeTab === '2'
-                                })
-                            }
-                            onClick={
-                                () => { this.toggle('2'); }
-                            }
-                        >
-                            REGISTER
-                        </NavLink>
-                    </NavItem>
-                </Nav>
-                <TabContent
-                    className='h-50 mb-auto'
-                    activeTab={ this.state.activeTab }
-                >
-                    <TabPane tabId='1'>
-                        <Row>
+                <Tabs tabs={[
+                    {
+                        id: '1',
+                        label: 'LOGIN',
+                        content: (
                             <LoginForm
                                 onSubmit={ this.handleLogin }
                                 message={ this.state.loginError }
                             />
-                        </Row>
-                    </TabPane>
-                    <TabPane tabId='2'>
-                        <Row>
+                        )
+                    },
+                    {
+                        id: '2',
+                        label: 'REGISTER',
+                        content: (
                             <RegistrationForm
                                 onSubmit={ this.handleRegistration }
                                 message={ this.state.registrationError }
                             />
-                        </Row>
-                    </TabPane>
-                </TabContent>
+                        )
+                    }
+                ]} />
             </Row>
         );
     }
@@ -145,16 +97,16 @@ HomeScreen.propTypes = {
             password: PropTypes.string,
         })
     ),
-    user: PropTypes.string,
     addUser: PropTypes.func.isRequired,
     loginUser: PropTypes.func.isRequired,
-    history: PropTypes.object,
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired,
+    }),
 };
 
 const mapStateToProps = (state) => (
     {
         users: state.users,
-        user: state.user
     }
 );
 
