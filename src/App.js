@@ -8,20 +8,20 @@ import {
 
 import './App.css';
 import store from './store';
-import HomeScreen from './containers/home';
-import TimelineScreen from './containers/timeline';
-import TweetScreen from './containers/tweet';
-import InvalidScreen from './containers/invalid';
+import HomeLoadable from './containers/homeloadable';
+import TimelineLoadable from './containers/timelineloadable';
+import TweetLoadable from './containers/tweetloadable';
+import InvalidLoadable from './containers/invalidloadable';
 
 const App = () => (
     <Provider store={ store }>
         <Router>
             <div className='app w-100'>
                 <Switch>
-                    <Route exact path='/'component={ HomeScreen } />
-                    <Route exact path='/:username' component={ TimelineScreen } />
-                    <Route path='/tweet/:id' component={ TweetScreen } />
-                    <Route component={ InvalidScreen } />
+                    <Route exact path='/' component={ HomeLoadable } />
+                    <Route exact path='/:username' component={ TimelineLoadable } />
+                    <Route path='/tweet/:id' component={ TweetLoadable } />
+                    <Route component={ InvalidLoadable } />
                 </Switch>
             </div>
         </Router>
