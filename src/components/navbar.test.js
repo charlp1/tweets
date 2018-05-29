@@ -10,7 +10,9 @@ import {
 import NavBar from './navbar';
 
 const setup = () => {
-    const brand = 'Home';
+    const brand = (
+        <div>Home</div>
+    );
     const children = (
         <div>Links</div>
     );
@@ -58,7 +60,7 @@ describe('<NavBar />', () => {
         const { shallowRender, brand } = setup();
         const navbarBrand = shallowRender.find(NavbarBrand);
 
-        expect(navbarBrand.children().text()).to.equal(brand);
+        expect(navbarBrand.contains(brand)).to.equal(true);
     });
 
     it('renders children props', () => {

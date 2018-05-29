@@ -10,3 +10,12 @@ button {
     flex: 1;
     overflow: auto;
 }
+
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+.icon-container svg {
+    margin-right: 8px;
+}

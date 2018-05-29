@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+
+import {
+    FaChevronLeft,
+    FaComment,
+} from 'react-icons/lib/fa';
 import {
     Button,
     Row,
@@ -46,14 +52,21 @@ class TweetScreen extends Component {
 
         return (
             <Row className='w-100 h-100 m-0 flex-column bg-light'>
-                <NavBar brand='TWEETS' />
+                <NavBar
+                    brand={(
+                        <div className='icon-container'>
+                            <FaComment /> TWEET
+                        </div>
+                    )}
+                />
                 <Row className='m-0 p-3'>
                     <TweetDetails data={ tweetData } />
                     <Button
                         color='primary'
+                        className='icon-container'
                         onClick={ this.handleClickBack }
                     >
-                        Back
+                        <FaChevronLeft /> back
                     </Button>
                 </Row>
             </Row>

@@ -127,7 +127,7 @@ describe('<UpdateTweetForm />', () => {
     it('calls onClickTweet on View button click', () => {
         const { shallowRender, onClickTweet } = setup();
         const buttons = shallowRender.find(Button);
-        const viewButton = buttons.get(0);
+        const viewButton = buttons.get(2);
 
         viewButton.props.onClick();
         expect(onClickTweet).to.have.property('callCount', 1);
@@ -136,7 +136,7 @@ describe('<UpdateTweetForm />', () => {
     it('calls onEditTweet on Edit button click', () => {
         const { shallowRender, onEditTweet } = setup();
         const buttons = shallowRender.find(Button);
-        const editButton = buttons.get(1);
+        const editButton = buttons.get(0);
 
         shallowRender.setState({ text: 'test' });
         editButton.props.onClick();
@@ -146,7 +146,7 @@ describe('<UpdateTweetForm />', () => {
     it('calls onDeleteTweet on Delete button click', () => {
         const { shallowRender, onDeleteTweet } = setup();
         const buttons = shallowRender.find(Button);
-        const deleteButton = buttons.get(2);
+        const deleteButton = buttons.get(1);
 
         deleteButton.props.onClick();
         expect(onDeleteTweet).to.have.property('callCount', 1);

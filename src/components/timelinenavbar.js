@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+    FaComment,
+    FaSignOut,
+} from 'react-icons/lib/fa';
+import {
     Collapse,
     DropdownItem,
     DropdownMenu,
@@ -30,7 +34,13 @@ class TimelineNavBar extends Component {
 
     render() {
         return (
-            <NavBar brand='TWEETS'>
+            <NavBar
+                brand={(
+                    <div className='icon-container'>
+                        <FaComment /> TWEETS
+                    </div>
+                )}
+            >
                 <NavbarToggler
                     onClick={ this.toggle }
                 />
@@ -42,9 +52,10 @@ class TimelineNavBar extends Component {
                             </DropdownToggle>
                             <DropdownMenu right>
                                 <DropdownItem
+                                    className='icon-container'
                                     onClick={ this.props.onLogout }
                                 >
-                                    logout
+                                    <FaSignOut /> logout
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>

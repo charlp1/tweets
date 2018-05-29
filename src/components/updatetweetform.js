@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+    FaChevronRight,
+    FaEdit,
+    FaTrash,
+} from 'react-icons/lib/fa';
+import {
     Button,
     ButtonGroup,
     Card,
@@ -77,25 +82,31 @@ class UpdateTweetForm extends Component {
                         error={ this.state.message }
                     />
                     <ButtonGroup
-                        className='w-100 justify-content-end'
+                        className='w-100 justify-content-start'
                     >
                         <Button
+                            outline
                             color='primary'
-                            onClick={ this.props.onClickTweet }
-                        >
-                            View
-                        </Button>
-                        <Button
-                            color='primary'
+                            className='border-0 rounded'
                             onClick={ this.handleEdit }
                         >
-                            Update
+                            <FaEdit />
                         </Button>
                         <Button
+                            outline
                             color='danger'
+                            className='border-0 rounded'
                             onClick={ this.props.onDeleteTweet }
                         >
-                            Delete
+                            <FaTrash />
+                        </Button>
+                        <Button
+                            outline
+                            color='primary'
+                            className='border-0 rounded ml-auto'
+                            onClick={ this.props.onClickTweet }
+                        >
+                            View <FaChevronRight />
                         </Button>
                     </ButtonGroup>
                 </CardBody>

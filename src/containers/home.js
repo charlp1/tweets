@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-
 import { addUser } from './../actions/users';
 import { loginUser } from './../actions/user';
 
+import {
+    FaHome,
+} from 'react-icons/lib/fa';
 import {
     Row,
 } from 'reactstrap';
@@ -61,7 +64,11 @@ class HomeScreen extends Component {
                 className='forms-container flex-column bg-light h-100
                 align-items-center justify-content-start m-0'
             >
-                <NavBar brand='HOME' />
+                <NavBar
+                    brand={(
+                        <FaHome />
+                    )}
+                />
                 <Tabs tabs={[
                     {
                         id: '1',

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+    FaPaperPlane,
+} from 'react-icons/lib/fa';
+import {
     Button,
     InputGroup,
     InputGroupAddon,
@@ -59,7 +62,7 @@ class TweetForm extends Component {
                         <Button
                             color='primary'
                             onClick={ this.handleSubmit }>
-                            Tweet
+                            <FaPaperPlane />
                         </Button>
                     </InputGroupAddon>
                 </InputGroup>

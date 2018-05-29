@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import {
+    FaHome,
+} from 'react-icons/lib/fa';
 import {
     Row,
     Button,
@@ -15,12 +19,12 @@ const InvalidScreen = (props) => (
                 <br/>
                 <Button
                     color='primary'
-                    className='mt-2'
+                    className='icon-container mt-2'
                     onClick={
                         () => props.history.push('/')
                     }
                 >
-                    Back to Home Page
+                    <FaHome /> Back to Home Page
                 </Button>
             </p>
         </Row>

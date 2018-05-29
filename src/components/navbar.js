@@ -22,7 +22,7 @@ const NavBar = (props) => (
 );
 
 NavBar.propTypes = {
-    brand: PropTypes.string,
+    brand: PropTypes.node,
     children: PropTypes.node,
 };
 
