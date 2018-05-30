@@ -19,9 +19,11 @@ const ModalDialog = (props) => (
         <ModalBody>
             { props.body }
         </ModalBody>
-        <ModalFooter>
-            { props.footer }
-        </ModalFooter>
+        { props.footer &&
+            <ModalFooter>
+                { props.footer }
+            </ModalFooter>
+        }
     </Modal>
 );
 
