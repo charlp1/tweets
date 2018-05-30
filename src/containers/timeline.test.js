@@ -9,7 +9,7 @@ import {
 import TimelineNavBar from './../components/timelinenavbar';
 import TweetForm from './../components/tweetform';
 import Tweets from './../components/tweets';
-import DeleteModalDialog from './../components/deletemodal';
+import DeleteTweetDialog from './../components/deletetweetdialog';
 import { TimelineScreen } from './timeline';
 
 const setup = () => {
@@ -97,9 +97,9 @@ describe('<TimelineScreen />', () => {
         expect(shallowRender.find(TweetForm)).to.have.length(1);
     });
 
-    it('renders a <DeleteModalDialog /> component', () => {
+    it('renders a <DeleteTweetDialog /> component', () => {
         const { shallowRender } = setup();
 
-        expect(shallowRender.find(DeleteModalDialog)).to.have.length(1);
+        expect(shallowRender.find(DeleteTweetDialog)).to.have.length(1);
     });
 });

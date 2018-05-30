@@ -17,7 +17,7 @@ import {
 import TimelineNavBar from './../components/timelinenavbar';
 import TweetForm from './../components/tweetform';
 import Tweets from './../components/tweets';
-import DeleteModalDialog from './../components/deletemodal';
+import DeleteTweetDialog from './../components/deletetweetdialog';
 
 class TimelineScreen extends Component {
     constructor(props) {
@@ -135,7 +135,7 @@ class TimelineScreen extends Component {
                 <TweetForm
                     onSubmit={ this.handleAddTweet }
                 />
-                <DeleteModalDialog
+                <DeleteTweetDialog
                     isOpen={ this.state.modal }
                     onClose={ this.hideDeleteDialog }
                     onDelete={ this.handleDeleteTweet }

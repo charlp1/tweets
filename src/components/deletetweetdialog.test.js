@@ -4,11 +4,11 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import ModalDialog from './modal';
-import DeleteModalDialog from './deletemodal';
+import DeleteTweetDialog from './deletetweetdialog';
 
 const setup = () => {
     const dialog = (
-        <DeleteModalDialog
+        <DeleteTweetDialog
             isOpen={ false }
             onClose={ () => {} }
             onDelete={ () => {} }
@@ -22,7 +22,7 @@ const setup = () => {
     };
 };
 
-describe('<DeleteModalDialog />', () => {
+describe('<DeleteTweetDialog />', () => {
     it('renders without crashing', () => {
         const { dialog } = setup();
         const div = document.createElement('div');

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import ModalDialog from './modal';
 
-const DeleteModalDialog = (props) => (
+const DeleteTweetDialog = (props) => (
     <ModalDialog
         isOpen={ props.isOpen }
         onClose={ props.onClose }
@@ -29,10 +29,10 @@ const DeleteModalDialog = (props) => (
     />
 );
 
-DeleteModalDialog.propTypes = {
+DeleteTweetDialog.propTypes = {
     isOpen: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
 };
 
-export default DeleteModalDialog;
+export default DeleteTweetDialog;
