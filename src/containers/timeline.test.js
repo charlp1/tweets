@@ -7,8 +7,8 @@ import {
     Row,
 } from 'reactstrap';
 import TimelineNavBar from './../components/timelinenavbar';
-import TweetForm from './../components/tweetform';
 import Tweets from './../components/tweets';
+import AddTweetDialog from './../components/addtweetdialog';
 import DeleteTweetDialog from './../components/deletetweetdialog';
 import { TimelineScreen } from './timeline';
 
@@ -91,10 +91,10 @@ describe('<TimelineScreen />', () => {
         expect(shallowRender.find(Tweets)).to.have.length(1);
     });
 
-    it('renders a <TweetForm /> component', () => {
+    it('renders a <AddTweetDialog /> component', () => {
         const { shallowRender } = setup();
 
-        expect(shallowRender.find(TweetForm)).to.have.length(1);
+        expect(shallowRender.find(AddTweetDialog)).to.have.length(1);
     });
 
     it('renders a <DeleteTweetDialog /> component', () => {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
     FaComment,
+    FaPlus,
     FaSignOut,
 } from 'react-icons/lib/fa';
 import {
@@ -53,6 +54,13 @@ class TimelineNavBar extends Component {
                             <DropdownMenu right>
                                 <DropdownItem
                                     className='icon-container'
+                                    onClick={ this.props.onAddTweet }
+                                >
+                                    <FaPlus /> Post Tweet
+                                </DropdownItem>
+                                <DropdownItem divider />
+                                <DropdownItem
+                                    className='icon-container'
                                     onClick={ this.props.onLogout }
                                 >
                                     <FaSignOut /> logout
@@ -68,6 +76,7 @@ class TimelineNavBar extends Component {
 
 TimelineNavBar.propTypes = {
     username: PropTypes.string,
+    onAddTweet: PropTypes.func.isRequired,
     onLogout: PropTypes.func.isRequired,
 };
 

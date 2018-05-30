@@ -17,10 +17,12 @@ import TimelineNavBar from './timelinenavbar';
 
 const setup = () => {
     const username = 'User';
+    const onAddTweet = sinon.spy();
     const onLogout = sinon.spy();
     const navbar = (
         <TimelineNavBar
             username={ username }
+            onAddTweet={ onAddTweet }
             onLogout={ onLogout }
         />
     );
@@ -28,6 +30,7 @@ const setup = () => {
 
     return {
         username,
+        onAddTweet,
         onLogout,
         navbar,
         shallowRender,
@@ -94,17 +97,27 @@ describe('<TimelineNavBar />', () => {
         expect(shallowRender.find(DropdownMenu)).to.have.length(1);
     });
 
-    it('renders a <DropdownItem /> component', () => {
+    it('renders 3 <DropdownItem /> components', () => {
         const { shallowRender } = setup();
 
-        expect(shallowRender.find(DropdownItem)).to.have.length(1);
+        expect(shallowRender.find(DropdownItem)).to.have.length(3);
+    });
+
+    it('clicking post tweet calls onAddTweet', () => {
+        const { shallowRender, onAddTweet } = setup();
+        const items = shallowRender.find(DropdownItem);
+        const post = items.get(0);
+
+        post.props.onClick()
+        expect(onAddTweet).to.have.property('callCount', 1);
     });
 
     it('clicking logout calls onLogout', () => {
         const { shallowRender, onLogout } = setup();
-        const logout = shallowRender.find(DropdownItem);
+        const items = shallowRender.find(DropdownItem);
+        const logout = items.get(2);
 
-        logout.simulate('click');
+        logout.props.onClick()
         expect(onLogout).to.have.property('callCount', 1);
     });
 });

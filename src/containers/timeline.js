@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-
 import { logoutUser } from './../actions/user';
 import {
     addTweet,
@@ -15,8 +15,8 @@ import {
     Row,
 } from 'reactstrap';
 import TimelineNavBar from './../components/timelinenavbar';
-import TweetForm from './../components/tweetform';
 import Tweets from './../components/tweets';
+import AddTweetDialog from './../components/addtweetdialog';
 import DeleteTweetDialog from './../components/deletetweetdialog';
 
 class TimelineScreen extends Component {
@@ -26,7 +26,10 @@ class TimelineScreen extends Component {
         this.state = {
             tweets: [],
             selectedTweet: {},
-            modal: false
+            modal: {
+                add: false,
+                delete: false,
+            },
         };
     }
 
@@ -99,14 +102,38 @@ class TimelineScreen extends Component {
     showDeleteDialog = (tweet) => {
         this.setState({
             selectedTweet: tweet,
-            modal: true
+            modal: {
+                add: false,
+                delete: true,
+            }
         });
     }
 
     hideDeleteDialog = () => {
         this.setState({
             selectedTweet: {},
-            modal: false
+            modal: {
+                add: false,
+                delete: false,
+            }
+        });
+    }
+
+    showAddDialog = () => {
+        this.setState({
+            modal: {
+                add: true,
+                delete: false,
+            }
+        });
+    }
+
+    hideAddDialog = () => {
+        this.setState({
+            modal: {
+                add: false,
+                delete: false,
+            }
         });
     }
 
@@ -123,6 +150,7 @@ class TimelineScreen extends Component {
             <Row className='flex-column h-100 m-0 bg-dark'>
                 <TimelineNavBar
                     username={ match.params.username }
+                    onAddTweet={ this.showAddDialog }
                     onLogout={ this.handleLogout }
                 />
                 <Tweets
@@ -132,11 +160,13 @@ class TimelineScreen extends Component {
                     onEditTweet={ this.handleEditTweet }
                     onDeleteTweet={ this.showDeleteDialog }
                 />
-                <TweetForm
-                    onSubmit={ this.handleAddTweet }
+                <AddTweetDialog
+                    isOpen={ this.state.modal.add }
+                    onClose={ this.hideAddDialog }
+                    onAdd={ this.handleAddTweet }
                 />
                 <DeleteTweetDialog
-                    isOpen={ this.state.modal }
+                    isOpen={ this.state.modal.delete }
                     onClose={ this.hideDeleteDialog }
                     onDelete={ this.handleDeleteTweet }
                 />
