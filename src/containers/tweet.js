@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, StrictMode } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
@@ -52,23 +52,25 @@ class TweetScreen extends Component {
 
         return (
             <Row className='w-100 h-100 m-0 flex-column bg-light'>
-                <NavBar
-                    brand={(
-                        <div className='icon-container'>
-                            <FaComment /> TWEET
-                        </div>
-                    )}
-                />
-                <Row className='m-0 p-3'>
-                    <TweetDetails data={ tweetData } />
-                    <Button
-                        color='primary'
-                        className='icon-container'
-                        onClick={ this.handleClickBack }
-                    >
-                        <FaChevronLeft /> back
-                    </Button>
-                </Row>
+                <StrictMode>
+                    <NavBar
+                        brand={(
+                            <div className='icon-container'>
+                                <FaComment /> TWEET
+                            </div>
+                        )}
+                    />
+                    <Row className='m-0 p-3'>
+                        <TweetDetails data={ tweetData } />
+                        <Button
+                            color='primary'
+                            className='icon-container'
+                            onClick={ this.handleClickBack }
+                        >
+                            <FaChevronLeft /> back
+                        </Button>
+                    </Row>
+                </StrictMode>
             </Row>
         );
     }

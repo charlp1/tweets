@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, StrictMode } from 'react';
 import PropTypes from 'prop-types';
 
 import { bindActionCreators } from 'redux';
@@ -149,30 +149,32 @@ class TimelineScreen extends Component {
 
         return (
             <Row className='flex-column h-100 m-0 bg-dark'>
-                <TimelineNavBar
-                    username={ match.params.username }
-                    onAddTweet={ this.showAddDialog }
-                    onLogout={ this.handleLogout }
-                />
-                <ErrorBoundary>
-                    <Tweets
+                <StrictMode>
+                    <TimelineNavBar
                         username={ match.params.username }
-                        tweets={ this.state.tweets }
-                        onClickTweet={ this.handleClickTweet }
-                        onEditTweet={ this.handleEditTweet }
-                        onDeleteTweet={ this.showDeleteDialog }
+                        onAddTweet={ this.showAddDialog }
+                        onLogout={ this.handleLogout }
                     />
-                    <AddTweetDialog
-                        isOpen={ this.state.modal.add }
-                        onClose={ this.hideAddDialog }
-                        onAdd={ this.handleAddTweet }
-                    />
-                    <DeleteTweetDialog
-                        isOpen={ this.state.modal.delete }
-                        onClose={ this.hideDeleteDialog }
-                        onDelete={ this.handleDeleteTweet }
-                    />
-                </ErrorBoundary>
+                    <ErrorBoundary>
+                        <Tweets
+                            username={ match.params.username }
+                            tweets={ this.state.tweets }
+                            onClickTweet={ this.handleClickTweet }
+                            onEditTweet={ this.handleEditTweet }
+                            onDeleteTweet={ this.showDeleteDialog }
+                        />
+                        <AddTweetDialog
+                            isOpen={ this.state.modal.add }
+                            onClose={ this.hideAddDialog }
+                            onAdd={ this.handleAddTweet }
+                        />
+                        <DeleteTweetDialog
+                            isOpen={ this.state.modal.delete }
+                            onClose={ this.hideDeleteDialog }
+                            onDelete={ this.handleDeleteTweet }
+                        />
+                    </ErrorBoundary>
+                </StrictMode>
             </Row>
         );
     }

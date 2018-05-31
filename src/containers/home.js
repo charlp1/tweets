@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, StrictMode } from 'react';
 import PropTypes from 'prop-types';
 
 import { bindActionCreators } from 'redux';
@@ -88,14 +88,16 @@ class HomeScreen extends Component {
                 className='forms-container flex-column bg-light h-100
                 align-items-center justify-content-start m-0'
             >
-                <NavBar
-                    brand={(
-                        <FaHome />
-                    )}
-                />
-                <ErrorBoundary>
-                    <Tabs tabs={ tabs } />
-                </ErrorBoundary>
+                <StrictMode>
+                    <NavBar
+                        brand={(
+                            <FaHome />
+                        )}
+                    />
+                    <ErrorBoundary>
+                        <Tabs tabs={ tabs } />
+                    </ErrorBoundary>
+                </StrictMode>
             </Row>
         );
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -12,22 +12,24 @@ import NavBar from './../components/navbar';
 
 const InvalidScreen = (props) => (
     <Row className='w-100 h-100 m-0 flex-column bg-light'>
-        <NavBar brand='TWEETS' />
-        <Row className='m-auto p-3 text-center' >
-            <p>
-                Page Not Found
-                <br/>
-                <Button
-                    color='primary'
-                    className='icon-container mt-2'
-                    onClick={
-                        () => props.history.push('/')
-                    }
-                >
-                    <FaHome /> Back to Home Page
-                </Button>
-            </p>
-        </Row>
+        <StrictMode>
+            <NavBar brand='TWEETS' />
+            <Row className='m-auto p-3 text-center' >
+                <p>
+                    Page Not Found
+                    <br/>
+                    <Button
+                        color='primary'
+                        className='icon-container mt-2'
+                        onClick={
+                            () => props.history.push('/')
+                        }
+                    >
+                        <FaHome /> Back to Home Page
+                    </Button>
+                </p>
+            </Row>
+        </StrictMode>
     </Row>
 );
 
