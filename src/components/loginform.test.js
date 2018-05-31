@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Button } from 'reactstrap';
 import CustomForm from './form';
 import FormInput from './forminput';
@@ -13,7 +13,7 @@ const setup = () => {
     const onSubmit = sinon.spy();
     const form = (
         <LoginForm
-            message={ message}
+            message={ message }
             onSubmit={ onSubmit }
         />
     );
@@ -70,15 +70,38 @@ describe('<LoginForm />', () => {
         expect(button.children().text()).to.equal('LOGIN');
     });
 
-    it('calls onSubmit when form is filled', () => {
-        const { shallowRender, onSubmit } = setup();
+    it('button is disabled by default', () => {
+        const { shallowRender } = setup();
         const button = shallowRender.find(Button);
-        const form = shallowRender.find(CustomForm);
+
+        expect(button.props().disabled).to.equal(true);
+    });
+
+    it('button is enabled when form is filled', () => {
+        const { shallowRender } = setup();
 
         shallowRender.setState({
             username: 'test',
             password: 'test'
         });
+        shallowRender.update();
+
+        const button = shallowRender.find(Button);
+
+        expect(button.props().disabled).to.equal(false);
+    });
+
+    it('calls onSubmit when button is clicked', () => {
+        const { shallowRender, onSubmit } = setup();
+
+        shallowRender.setState({
+            username: 'tester-user',
+            password: 'tester-password'
+        });
+        shallowRender.update();
+
+        const button = shallowRender.find(Button);
+
         button.simulate('click');
         expect(onSubmit).to.have.property('callCount', 1);
     });

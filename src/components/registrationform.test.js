@@ -63,6 +63,29 @@ describe('<RegistrationForm />', () => {
         expect(shallowRender.find(Button)).to.have.length(1);
     });
 
+    it('button is disabled by default', () => {
+        const { shallowRender } = setup();
+        const button = shallowRender.find(Button);
+
+        expect(button.props().disabled).to.equal(true);
+    });
+
+    it('button is enabled when form is filled', () => {
+        const { shallowRender } = setup();
+
+        shallowRender.setState({
+            username: 'test',
+            firstname: 'test',
+            password: 'test'
+        });
+        shallowRender.update();
+
+        const button = shallowRender.find(Button);
+
+        expect(button.props().disabled).to.equal(false);
+    });
+
+
     it('checks username on submit', () => {
         const { shallowRender } = setup();
         const button = shallowRender.find(Button);
@@ -95,13 +118,16 @@ describe('<RegistrationForm />', () => {
 
     it('calls onSubmit props when clicking button', () => {
         const { shallowRender, onSubmit } = setup();
-        const button = shallowRender.find(Button);
 
         shallowRender.setState({
-            username: 'test',
-            firstname: 'Tester',
-            password: 'test'
+            username: 'tester-user',
+            firstname: 'Tester Name',
+            password: 'tester-password'
         });
+        shallowRender.update();
+
+        const button = shallowRender.find(Button);
+
         button.simulate('click');
         expect(onSubmit).to.have.property('callCount', 1);
     });

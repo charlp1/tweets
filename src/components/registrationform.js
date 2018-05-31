@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import CustomForm from './form';
 import FormInput from './forminput';
+import Validation from './../utils/validation';
 
 class RegistrationForm extends Component {
     constructor(props) {
@@ -23,34 +24,36 @@ class RegistrationForm extends Component {
     handleInputChange = (e) => {
         const target = e.target;
 
-        this.setState({
-            [target.name]: target.value
-        });
+        this.setState((state) => ({
+            ...state,
+            [target.name]: target.value,
+            error: {
+                ...this.state.error,
+                [target.name]: Validation[target.name](target.value)
+            }
+        }));
     }
 
     handleSubmit = () => {
         const state = this.state;
-        const username = state.username;
-        const firstname = state.firstname;
-        const password = state.password;
+        const usernameError = Validation.username(state.username);
+        const firstnameError = Validation.firstname(state.firstname);
+        const passwordError = Validation.password(state.password);
 
         if (
-            username &&
-            firstname &&
-            password
+            usernameError ||
+            firstnameError ||
+            passwordError
         ) {
-            this.props.onSubmit(state);
-        } else {
             this.setState({
                 error: {
-                    username: username ? '' :
-                        'Please provide a username.',
-                    firstname: firstname ? '' :
-                        'Please provide a first name.',
-                    password: password ? '' :
-                        'Please provide a password.'
+                    username: usernameError,
+                    firstname: firstnameError,
+                    password: passwordError
                 }
             });
+        } else {
+            this.props.onSubmit(state);
         }
     }
 
