@@ -25,10 +25,10 @@ class UpdateTweetForm extends Component {
         };
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({
+    static getDerivedStateFromProps(nextProps, prevState) {
+        return {
             text: nextProps.data.text
-        });
+        };
     }
 
     handleInput = (e) => {
