@@ -18,6 +18,7 @@ import TimelineNavBar from './../components/timelinenavbar';
 import Tweets from './../components/tweets';
 import AddTweetDialog from './../components/addtweetdialog';
 import DeleteTweetDialog from './../components/deletetweetdialog';
+import ErrorBoundary from './../components/errorboundary';
 
 class TimelineScreen extends Component {
     constructor(props) {
@@ -153,23 +154,25 @@ class TimelineScreen extends Component {
                     onAddTweet={ this.showAddDialog }
                     onLogout={ this.handleLogout }
                 />
-                <Tweets
-                    username={ match.params.username }
-                    tweets={ this.state.tweets }
-                    onClickTweet={ this.handleClickTweet }
-                    onEditTweet={ this.handleEditTweet }
-                    onDeleteTweet={ this.showDeleteDialog }
-                />
-                <AddTweetDialog
-                    isOpen={ this.state.modal.add }
-                    onClose={ this.hideAddDialog }
-                    onAdd={ this.handleAddTweet }
-                />
-                <DeleteTweetDialog
-                    isOpen={ this.state.modal.delete }
-                    onClose={ this.hideDeleteDialog }
-                    onDelete={ this.handleDeleteTweet }
-                />
+                <ErrorBoundary>
+                    <Tweets
+                        username={ match.params.username }
+                        tweets={ this.state.tweets }
+                        onClickTweet={ this.handleClickTweet }
+                        onEditTweet={ this.handleEditTweet }
+                        onDeleteTweet={ this.showDeleteDialog }
+                    />
+                    <AddTweetDialog
+                        isOpen={ this.state.modal.add }
+                        onClose={ this.hideAddDialog }
+                        onAdd={ this.handleAddTweet }
+                    />
+                    <DeleteTweetDialog
+                        isOpen={ this.state.modal.delete }
+                        onClose={ this.hideDeleteDialog }
+                        onDelete={ this.handleDeleteTweet }
+                    />
+                </ErrorBoundary>
             </Row>
         );
     }

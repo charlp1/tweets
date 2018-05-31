@@ -16,6 +16,7 @@ import NavBar from './../components/navbar';
 import Tabs from './../components/tabs';
 import LoginForm from './../components/loginform';
 import RegistrationForm from './../components/registrationform';
+import ErrorBoundary from './../components/errorboundary';
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -59,6 +60,29 @@ class HomeScreen extends Component {
     }
 
     render() {
+        const tabs = [
+            {
+                id: '1',
+                label: 'LOGIN',
+                content: (
+                    <LoginForm
+                        onSubmit={ this.handleLogin }
+                        message={ this.state.loginError }
+                    />
+                )
+            },
+            {
+                id: '2',
+                label: 'REGISTER',
+                content: (
+                    <RegistrationForm
+                        onSubmit={ this.handleRegistration }
+                        message={ this.state.registrationError }
+                    />
+                )
+            }
+        ];
+
         return (
             <Row
                 className='forms-container flex-column bg-light h-100
@@ -69,28 +93,9 @@ class HomeScreen extends Component {
                         <FaHome />
                     )}
                 />
-                <Tabs tabs={[
-                    {
-                        id: '1',
-                        label: 'LOGIN',
-                        content: (
-                            <LoginForm
-                                onSubmit={ this.handleLogin }
-                                message={ this.state.loginError }
-                            />
-                        )
-                    },
-                    {
-                        id: '2',
-                        label: 'REGISTER',
-                        content: (
-                            <RegistrationForm
-                                onSubmit={ this.handleRegistration }
-                                message={ this.state.registrationError }
-                            />
-                        )
-                    }
-                ]} />
+                <ErrorBoundary>
+                    <Tabs tabs={ tabs } />
+                </ErrorBoundary>
             </Row>
         );
     }
