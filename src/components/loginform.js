@@ -59,22 +59,26 @@ class LoginForm extends Component {
     }
 
     render() {
+        const state = this.state;
+        const disabled = !(state.username && state.password);
+
         return (
             <CustomForm message={ this.props.message }>
                 <FormInput
                     name='username'
                     placeholder='User name'
                     onChange={ this.handleInputChange }
-                    error={ this.state.error.username }
+                    error={ state.error.username }
                 />
                 <FormInput
                     name='password'
                     placeholder='Password'
                     onChange={ this.handleInputChange }
-                    error={ this.state.error.password }
+                    error={ state.error.password }
                 />
                 <Button
                     color='primary'
+                    disabled={ disabled }
                     onClick={ this.handleSubmit }
                 >
                     LOGIN

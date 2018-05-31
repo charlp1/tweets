@@ -61,6 +61,7 @@ class TweetForm extends Component {
                     >
                         <Button
                             color='primary'
+                            disabled={ !this.state.text }
                             onClick={ this.handleSubmit }>
                             <FaPaperPlane />
                         </Button>

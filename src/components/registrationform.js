@@ -55,28 +55,34 @@ class RegistrationForm extends Component {
     }
 
     render() {
+        const state = this.state;
+        const disabled = !(
+            state.username && state.firstname && state.password
+        );
+
         return (
             <CustomForm message={ this.props.message }>
                 <FormInput
                     name='username'
                     placeholder='User name'
                     onChange={ this.handleInputChange }
-                    error={ this.state.error.username }
+                    error={ state.error.username }
                 />
                 <FormInput
                     name='firstname'
                     placeholder='First name'
                     onChange={ this.handleInputChange }
-                    error={ this.state.error.firstname }
+                    error={ state.error.firstname }
                 />
                 <FormInput
                     name='password'
                     placeholder='Password'
                     onChange={ this.handleInputChange }
-                    error={ this.state.error.password }
+                    error={ state.error.password }
                 />
                 <Button
                     color='primary'
+                    disabled={ disabled }
                     onClick={ this.handleSubmit }
                 >
                     REGISTER
