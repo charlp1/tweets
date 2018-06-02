@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
     FormGroup,
@@ -6,21 +6,27 @@ import {
     Input,
 } from 'reactstrap';
 
-const FormInput = (props) => (
-    <FormGroup className={ `w-100 ${props.className}` }>
-        <Input
-            type={ props.type }
-            name={ props.name }
-            value={ props.value }
-            placeholder={ props.placeholder }
-            onChange={ props.onChange }
-            invalid={ props.error ? true : false }
-        />
-        <FormFeedback className={ props.errorClassName }>
-            { props.error }
-        </FormFeedback>
-    </FormGroup>
-);
+class FormInput extends PureComponent {
+    render() {
+        const props = this.props;
+
+        return (
+            <FormGroup className={ `w-100 ${props.className}` }>
+                <Input
+                    type={ props.type }
+                    name={ props.name }
+                    value={ props.value }
+                    placeholder={ props.placeholder }
+                    onChange={ props.onChange }
+                    invalid={ props.error ? true : false }
+                />
+                <FormFeedback className={ props.errorClassName }>
+                    { props.error }
+                </FormFeedback>
+            </FormGroup>
+        );
+    }
+}
 
 FormInput.propTypes = {
     className: PropTypes.string,
